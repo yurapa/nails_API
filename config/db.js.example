@@ -1,0 +1,12 @@
+module.exports = {
+    // mongodb://<dbuser>:<dbpassword>@ds125322.mlab.com:25322/<dbName>
+    dbName: '',
+    user: '',
+    password: '',
+    apiKey: '',
+    generateUrl: function () {
+        let uri = 'mongodb://';
+        uri += this.user + ':' + this.password + '@ds125322.mlab.com:25322/' + this.dbName + '?apiKey=' + this.apiKey;
+        return uri;
+    }
+};
