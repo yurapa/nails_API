@@ -3,14 +3,14 @@
 Used technologies: Node.js, Express, MongoDB
 
 
-## REST API
+## RESTful API
 
-| Uniform Resource Locator (URL) | Action |
-| ------ | ------ |
-| GET /api/price | Find all lines of price |
-| POST /api/price | Add a new line |
-| PUT /api/price | Update the price |
-| DELETE /api/price/7 | Delete one line with ID=7 |
+| Method | Uniform Resource Locator (URL) | Action |
+| ------ | ------ | ------ |
+| GET | /api/price | Find all lines of price |
+| POST | /api/price | Create a new line |
+| PUT | /api/price | Update entire price document |
+| DELETE | /api/price/7 | Delete one line with ID=7 |
 
 
 ### Start API project
@@ -18,6 +18,14 @@ Used technologies: Node.js, Express, MongoDB
 ```sh
 $ npm i
 $ npm run dev   # local, dev
+```
+
+Using HEROKU:
+
+```sh
+$ npm i
+$ heroku open   # open the APP in the browser
+$ heroku local   # start the APP locally
 ```
 
 

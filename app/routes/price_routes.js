@@ -1,9 +1,11 @@
 module.exports = (app, db, ObjectID) => {
 
+    const PRICE_COLLECTION = 'nails-price';
+
     app.route('/api/price')
         .get((req, res) => {
             /* Get all price */
-            db.collection('nails-price').find().toArray((err, result) => {
+            db.collection(PRICE_COLLECTION).find({}).toArray((err, result) => {
                 if (err) {
                     console.log(err);
                     return res.sendStatus(500);
@@ -12,7 +14,7 @@ module.exports = (app, db, ObjectID) => {
             });
         })
         .post((req, res) => {
-            db.collection('nails-price').insertOne({
+            db.collection(PRICE_COLLECTION).insertOne({
                 decade: req.body.decade,
                 artist: req.body.artist,
                 song: req.body.song,
@@ -28,7 +30,7 @@ module.exports = (app, db, ObjectID) => {
 
     app.route('/api/price/:id')
         .get((req, res) => {
-            db.collection('nails-price').findOne({ _id: ObjectID(req.params.id) }, (err, item) => {
+            db.collection(PRICE_COLLECTION).findOne({ _id: ObjectID(req.params.id) }, (err, item) => {
                 if (err) {
                     console.log(err);
                     return res.sendStatus(500);
@@ -38,7 +40,7 @@ module.exports = (app, db, ObjectID) => {
         })
         .put((req, res) => {
             /* Update one line by ID */
-            db.collection('nails-price').updateOne(
+            db.collection(PRICE_COLLECTION).updateOne(
                 {_id: ObjectID(req.params.id)},
                 {
                     $set: {
@@ -58,7 +60,7 @@ module.exports = (app, db, ObjectID) => {
         })
         .delete((req, res) => {
             /* Delete one line by ID */
-            db.collection('nails-price').deleteOne({_id: ObjectID(req.params.id)}, (err, result) => {
+            db.collection(PRICE_COLLECTION).deleteOne({_id: ObjectID(req.params.id)}, (err, result) => {
                 if (err) {
                     console.log(err);
                     return res.sendStatus(500);
