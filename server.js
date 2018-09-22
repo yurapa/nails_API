@@ -6,11 +6,7 @@ const app = express();
 
 const bodyParser = require('body-parser');
 
-//const CONFIG = require('./config/db');
 const PORT = process.env.PORT || 8000;
-
-// URI_FOR_DEV = CONFIG.generateUrl()
-// URI_FOR_PROD = process.env.PROD_MONGODB
 
 // Create a database variable outside of the database connection callback to reuse the connection pool in your app.
 let db;
@@ -31,6 +27,7 @@ MongoClient.connect(process.env.PROD_MONGODB, {useNewUrlParser: true}, (err, cli
     console.log("Database connection ready");
 
     require('./app/routes')(app, db, ObjectID);
+
     app.listen(PORT, () => {
         console.log(`App now running on port: ${ PORT }`);
     });
