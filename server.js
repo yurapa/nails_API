@@ -5,6 +5,7 @@ const express = require('express');
 const app = express();
 
 const bodyParser = require('body-parser');
+const cors = require('cors');
 
 const PORT = process.env.PORT || 8000;
 
@@ -14,6 +15,8 @@ let db;
 // app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true})); // for parsing application/x-www-form-urlencoded
 
+// CORS is package for providing a Connect/Express middleware that can be used to enable CORS with various options.
+app.use(cors());
 
 // Connect to the database before starting the application server.
 MongoClient.connect(process.env.PROD_MONGODB, {useNewUrlParser: true}, (err, client) => {
