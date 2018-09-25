@@ -16,13 +16,16 @@ module.exports = (app, db, ObjectID) => {
         .post((req, res) => {
             /* Add one service into the price */
             db.collection(PRICE_COLLECTION).insertOne({
-                'name.uk': req.body.name_uk,
-                'name.ru': req.body.name_ru,
-                'price.min': req.body.price_min,
-                'price.max': req.body.price_max,
+                name: {
+                    uk: req.body.name_uk,
+                    ru: req.body.name_ru
+                },
+                price: {
+                    min: req.body.price_min,
+                    max: req.body.price_max
+                },
                 isBasicService: req.body.isBasicService,
                 isVisible: req.body.isVisible
-
             }, (err, result) => {
                 if (err) {
                     console.log(err);

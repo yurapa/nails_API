@@ -2,6 +2,9 @@
 
 Used technologies: Node.js, Express, MongoDB
 
+ukrainian in Ukraine - lang="uk-UA"
+russian in Ukraine - lang="ru-UA"
+
 
 ## RESTful API
 
