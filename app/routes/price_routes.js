@@ -14,11 +14,10 @@ module.exports = (app, db, ObjectID) => {
             });
         })
         .post((req, res) => {
+            /* Add one service into the price */
+            console.log(req.body.isVisible);
             db.collection(PRICE_COLLECTION).insertOne({
-                decade: req.body.decade,
-                artist: req.body.artist,
-                song: req.body.song,
-                weeksAtOne: req.body.weeksAtOne
+                isVisible: req.body.isVisible
             }, (err, result) => {
                 if (err) {
                     console.log(err);
@@ -29,6 +28,7 @@ module.exports = (app, db, ObjectID) => {
         });
 
     app.route('/api/price/:id')
+        /* GET one service from the price by id */
         .get((req, res) => {
             db.collection(PRICE_COLLECTION).findOne({ _id: ObjectID(req.params.id) }, (err, item) => {
                 if (err) {
@@ -38,28 +38,27 @@ module.exports = (app, db, ObjectID) => {
                 res.send(item);
             });
         })
-        .put((req, res) => {
-            /* Update one line by ID */
-            db.collection(PRICE_COLLECTION).updateOne(
-                {_id: ObjectID(req.params.id)},
-                {
-                    $set: {
-                        decade: req.body.decade,
-                        artist: req.body.artist,
-                        song: req.body.song,
-                        weeksAtOne: req.body.weeksAtOne
-                    }
-                }, (err, result) => {
-                    if (err) {
-                        console.log(err);
-                        return res.sendStatus(500);
-                    }
-                    res.sendStatus(200);
-                }
-            );
-        })
+        // .put((req, res) => {
+        //     db.collection(PRICE_COLLECTION).updateOne(
+        //         {_id: ObjectID(req.params.id)},
+        //         {
+        //             $set: {
+        //                 decade: req.body.decade,
+        //                 artist: req.body.artist,
+        //                 song: req.body.song,
+        //                 weeksAtOne: req.body.weeksAtOne
+        //             }
+        //         }, (err, result) => {
+        //             if (err) {
+        //                 console.log(err);
+        //                 return res.sendStatus(500);
+        //             }
+        //             res.sendStatus(200);
+        //         }
+        //     );
+        // })
         .delete((req, res) => {
-            /* Delete one line by ID */
+            /* DELETE one service from the price by id */
             db.collection(PRICE_COLLECTION).deleteOne({_id: ObjectID(req.params.id)}, (err, result) => {
                 if (err) {
                     console.log(err);
