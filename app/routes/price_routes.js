@@ -17,8 +17,8 @@ module.exports = (app, db, ObjectID) => {
             /* Add one service into the price */
             db.collection(PRICE_COLLECTION).insertOne({
                 name: {
-                    uk: req.body.name_uk,
-                    ru: req.body.name_ru
+                    uk: req.body.nameUK,
+                    ru: req.body.nameRU
                 },
                 price: {
                     min: req.body.price_min,
